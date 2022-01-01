@@ -24,11 +24,11 @@ const queryParamsString = new URLSearchParams(params);
 
 const LOGIN_URL = `https://accounts.spotify.com/authorize?${queryParamsString.toString()}`;
 
-const sportifyApi = new SpotifyWebApi({
+const spotifyApi = new SpotifyWebApi({
   clientId: process.env.NEXT_PUBLIC_CLIENT_ID,
   clientSecret: process.env.NEXT_PUBLIC_CLIENT_SECRET,
 });
 
-export default sportifyApi;
+export default spotifyApi;
 
 export { LOGIN_URL };

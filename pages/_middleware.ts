@@ -1,5 +1,5 @@
 import { getToken } from 'next-auth/jwt';
-import { NextFetchEvent, NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 import { NextApiRequest } from 'next/types';
 
 export async function middleware(req: NextApiRequest) {

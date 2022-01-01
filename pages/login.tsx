@@ -5,3 +5,5 @@ export default function Login() {
     </div>
   );
 }
+
+export async function getServerSideProps(context) {}

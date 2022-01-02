@@ -1,6 +1,6 @@
-import { atom } from 'recoil';
+import { atom, selector } from 'recoil';
 
-export const playlistState = atom({
+export const playlistState = atom<SpotifyApi.SinglePlaylistResponse | null>({
   key: 'playlistState',
   default: null,
 });

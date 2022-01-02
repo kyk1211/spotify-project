@@ -2,7 +2,7 @@ import { useSession } from 'next-auth/react';
 import Image from 'next/image';
 import gravartar from 'gravatar';
 import { ChevronDownIcon } from '@heroicons/react/outline';
-import { useEffect, useLayoutEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { shuffle } from 'lodash';
 
 const colors = [
@@ -19,7 +19,7 @@ export default function Center() {
   const { data: session } = useSession();
   const [color, setColor] = useState<string>('');
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     setColor(shuffle(colors).pop() as string);
   }, []);
 
@@ -33,14 +33,14 @@ export default function Center() {
           <Image
             className="rounded-full"
             src={
-              (session?.user?.image as string) ||
+              (session?.user.image as string) ||
               'https:' + gravartar.url(session?.user?.email as string)
             }
             alt=""
             width={40}
             height={40}
           />
-          <h2>{session?.user?.name}</h2>
+          <h2 className="font-semibold">{session?.user.name}</h2>
           <ChevronDownIcon className="h-5 w-5" />
         </div>
       </header>

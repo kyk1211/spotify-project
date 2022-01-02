@@ -4,6 +4,9 @@ import gravartar from 'gravatar';
 import { ChevronDownIcon } from '@heroicons/react/outline';
 import { useEffect, useState } from 'react';
 import { shuffle } from 'lodash';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { playlistIdState, playlistState } from '@atoms/playlistAtom';
+import useSpotify from '@hooks/useSpotify';
 
 const colors = [
   'from-indigo-500',
@@ -17,11 +20,20 @@ const colors = [
 
 export default function Center() {
   const { data: session } = useSession();
+  const spotifyApi = useSpotify();
   const [color, setColor] = useState<string>('');
+  const playlistId = useRecoilValue(playlistIdState);
+  const [playlist, setPlaylist] = useRecoilState(playlistState);
 
   useEffect(() => {
     setColor(shuffle(colors).pop() as string);
-  }, []);
+  }, [playlistId]);
+
+  useEffect(() => {
+    spotifyApi.getPlaylist(playlistId).then((data) => {
+      setPlaylist(data.body);
+    });
+  }, [spotifyApi, playlistId]);
 
   return (
     <div className="flex-grow ">

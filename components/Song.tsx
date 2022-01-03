@@ -30,14 +30,16 @@ export default function Song({ order, track }: Props) {
       onClick={playSong}
     >
       <div className="flex items-center space-x-4">
-        <p className="pr-3">{order + 1}</p>
-        <Image
-          src={track.track.album.images[0].url}
-          alt=""
-          width={40}
-          height={40}
-          layout="fixed"
-        />
+        <p>{order + 1}</p>
+        <div>
+          <Image
+            src={track.track.album.images[0].url}
+            alt=""
+            width={40}
+            height={40}
+            layout="fixed"
+          />
+        </div>
         <div>
           <p className="w-36 lg:w-64 text-white truncate">{track.track.name}</p>
           <p className="w-40">{track.track.artists[0].name}</p>

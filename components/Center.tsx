@@ -66,15 +66,18 @@ export default function Center() {
       <section
         className={`flex items-end space-x-7 bg-gradient-to-b to-black ${color} h-80 text-white p-8`}
       >
-        {playlist?.images && (
-          <Image
-            className="shadow-2xl"
-            src={playlist?.images?.[0]?.url as string}
-            alt=""
-            height={176}
-            width={176}
-          />
-        )}
+        <div>
+          {playlist && (
+            <Image
+              className="shadow-2xl"
+              src={playlist.images?.[0]?.url as string}
+              alt=""
+              height={176}
+              width={176}
+              layout="fixed"
+            />
+          )}
+        </div>
         <div>
           <p>PLAYLIST</p>
           <h1 className="text-2xl md:text-3xl xl:text-5xl font-bold">

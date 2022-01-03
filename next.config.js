@@ -7,6 +7,7 @@ module.exports = {
       'www.gravatar.com',
       'i.scdn.co',
       'mosaic.scdn.co',
+      'i.scdn.co',
     ],
   },
 };

@@ -1,4 +1,11 @@
 import { currentTrackIdState, isPlayingState } from '@atoms/songAtom';
+import { ReplyIcon, SwitchHorizontalIcon } from '@heroicons/react/outline';
+import {
+  FastForwardIcon,
+  PauseIcon,
+  PlayIcon,
+  RewindIcon,
+} from '@heroicons/react/solid';
 import useSongInfo from '@hooks/useSongInfo';
 import useSpotify from '@hooks/useSpotify';
 import { useSession } from 'next-auth/react';
@@ -30,6 +37,18 @@ export default function Player() {
     }
   }, [setCurrentTrackId, setIsPlaying, songInfo, spotifyApi]);
 
+  const handlePlayPause = () => {
+    spotifyApi.getMyCurrentPlaybackState().then((data) => {
+      if (data.body.is_playing) {
+        spotifyApi.pause();
+        setIsPlaying(false);
+      } else {
+        spotifyApi.play();
+        setIsPlaying(true);
+      }
+    });
+  };
+
   useEffect(() => {
     if (spotifyApi.getAccessToken() && !currentTrackId) {
       fetchCurrentSong();
@@ -59,6 +78,19 @@ export default function Player() {
           <h3>{songInfo?.name}</h3>
           <p>{songInfo?.artists?.[0]?.name}</p>
         </div>
+      </div>
+      <div className="flex items-center justify-evenly">
+        <SwitchHorizontalIcon className="button" />
+        <RewindIcon className="button" />
+
+        {isPlaying ? (
+          <PauseIcon onClick={handlePlayPause} className="button w-10 h-10" />
+        ) : (
+          <PlayIcon onClick={handlePlayPause} className="button w-10 h-10" />
+        )}
+
+        <FastForwardIcon className="button" />
+        <ReplyIcon className="button" />
       </div>
     </div>
   );

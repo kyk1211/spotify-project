@@ -25,12 +25,18 @@ export default function Song({ order, track }: Props) {
 
   return (
     <div
-      className="grid grid-cols-2 text-gray-500 py-4 px-5 
-    hover:bg-gray-900 rounded-lg cursor-pointer"
+      className="grid grid-cols-[16px_4fr_2fr_minmax(120px,_1fr)] gap-4 text-gray-500 py-4 px-5 
+    hover:bg-gray-900 rounded-md cursor-pointer"
       onClick={playSong}
     >
+      <div className="flex items-center">
+        <div className="relative items-center min-h-[16px] min-w-[16px]">
+          <span className="absolute top-[-4px] tabular-nums right-[0.25em]">
+            {order + 1}
+          </span>
+        </div>
+      </div>
       <div className="flex items-center space-x-4">
-        <p>{order + 1}</p>
         <div>
           <Image
             src={track.track.album.images[0].url}

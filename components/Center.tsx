@@ -50,10 +50,7 @@ export default function Center() {
           <div className="w-10 h-10 relative">
             <Image
               className="rounded-full"
-              src={
-                (session?.user.image as string) ||
-                'https:' + gravartar.url(session?.user?.email as string)
-              }
+              src={session?.user.image as string}
               alt=""
               layout="fill"
             />
